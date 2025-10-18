@@ -42,7 +42,7 @@
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                       <Component id="bt_TaoTaiKhoan" min="-2" pref="122" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -69,9 +69,9 @@
               <Component id="txt_XacNhanMatkhau" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Cb_Vaitro" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="bt_TaoTaiKhoan" min="-2" pref="44" max="-2" attributes="0"/>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <Component id="bt_TaoTaiKhoan" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

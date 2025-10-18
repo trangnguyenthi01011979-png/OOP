@@ -372,6 +372,14 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mn_QLKQMouseClicked"/>
           </Events>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mn_QLTK">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; T&#xe0;i Kho&#x1ea3;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mn_QLTKMouseClicked"/>
+          </Events>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mn_QLCH">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; C&#xe2;u H&#x1ecf;i"/>
@@ -449,7 +457,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="bt_ganDT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -462,9 +470,9 @@
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="159" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="bt_ganDT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -475,7 +483,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ADMIN"/>
+        <Property name="text" type="java.lang.String" value="QU&#x1ea2;N TR&#x1eca; VI&#xca;N"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

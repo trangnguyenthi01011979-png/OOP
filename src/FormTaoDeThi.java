@@ -20,6 +20,7 @@ public class FormTaoDeThi extends javax.swing.JFrame {
         this.LMD = LMD; // Lưu mã đề thi vào biến toàn cục.
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
+        setLocationRelativeTo(null);
         setcolWidth(tb); // Tùy chỉnh độ rộng cột của bảng.
         showCauhoi(); // Tải và hiển thị danh sách các câu hỏi có thể thêm.
         
@@ -144,8 +145,8 @@ public class FormTaoDeThi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_Dethi)
-                            .addComponent(bt_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 511, Short.MAX_VALUE)))
+                            .addComponent(bt_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,8 +157,8 @@ public class FormTaoDeThi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bt_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(bt_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

@@ -18,6 +18,7 @@ public class FormCapNhatThongTinUSER extends javax.swing.JFrame {
     public FormCapNhatThongTinUSER(String LTK) {
         this.getMTK = LTK;
         initComponents();
+        setLocationRelativeTo(null);
         ctn.c();
         showcomboxnganh();
         showTK();

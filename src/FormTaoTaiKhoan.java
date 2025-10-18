@@ -25,7 +25,7 @@ public class FormTaoTaiKhoan extends javax.swing.JFrame {
     public FormTaoTaiKhoan() {
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
-        
+        setLocationRelativeTo(null);
         // Tùy chỉnh hành vi khi đóng cửa sổ.
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -131,7 +131,7 @@ public class FormTaoTaiKhoan extends javax.swing.JFrame {
                         .addGap(68, 68, 68)
                         .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                        .addGap(92, 92, 92)
                         .addComponent(bt_TaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -154,9 +154,9 @@ public class FormTaoTaiKhoan extends javax.swing.JFrame {
                 .addComponent(txt_XacNhanMatkhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Cb_Vaitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(bt_TaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(bt_TaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         pack();

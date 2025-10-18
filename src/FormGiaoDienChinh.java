@@ -22,6 +22,7 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
        this.check = check; // Gán trạng thái đăng nhập.
        TMH.getTMH_Admin(check);
        initComponents(); // Khởi tạo các thành phần giao diện.
+       setLocationRelativeTo(null);
         ctn.c(); // Mở kết nối CSDL.
         showDeThi(); // Tải và hiển thị danh sách đề thi lên bảng.
         // kiemTraDangNhap(); // GHI CHÚ: Phương thức này nên được gọi ở đây để bảo mật.
@@ -126,6 +127,7 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
         mn_QLND = new javax.swing.JMenu();
         mn_QLL = new javax.swing.JMenu();
         mn_QLKQ = new javax.swing.JMenu();
+        mn_QLTK = new javax.swing.JMenu();
         mn_QLCH = new javax.swing.JMenu();
         mn_caidat = new javax.swing.JMenu();
         mnItem_DoiMK = new javax.swing.JMenu();
@@ -366,7 +368,7 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("ADMIN");
+        jLabel5.setText("QUẢN TRỊ VIÊN");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Danh Sách Đề Thi");
@@ -424,6 +426,14 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
         });
         jMenuBar3.add(mn_QLKQ);
 
+        mn_QLTK.setText("Quản Lí Tài Khoản");
+        mn_QLTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mn_QLTKMouseClicked(evt);
+            }
+        });
+        jMenuBar3.add(mn_QLTK);
+
         mn_QLCH.setText("Quản Lý Câu Hỏi");
         mn_QLCH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -476,7 +486,7 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_ganDT)
-                .addGap(20, 20, 20))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,9 +497,9 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(bt_ganDT)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -557,7 +567,13 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
     }//GEN-LAST:event_mn_QLNDMouseClicked
     
     
-   
+    //======================================================================================================================================================================
+    private void mn_QLTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mn_QLTKMouseClicked
+        FormQuanLiTaiKhoan FQLTK = new FormQuanLiTaiKhoan();
+        new DGD(FQLTK);
+        this.dispose();
+    }//GEN-LAST:event_mn_QLTKMouseClicked
+    
     
     //======================================================================================================================================================================
     private void mn_QLCHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mn_QLCHMouseClicked
@@ -657,6 +673,7 @@ public class FormGiaoDienChinh extends javax.swing.JFrame {
     private javax.swing.JMenu mn_QLKQ;
     private javax.swing.JMenu mn_QLL;
     private javax.swing.JMenu mn_QLND;
+    private javax.swing.JMenu mn_QLTK;
     private javax.swing.JMenu mn_caidat;
     private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables

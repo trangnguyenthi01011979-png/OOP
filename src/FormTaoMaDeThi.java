@@ -16,7 +16,7 @@ public class FormTaoMaDeThi extends javax.swing.JFrame {
      public FormTaoMaDeThi() {
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
-        
+        setLocationRelativeTo(null);
         // Thiết lập hành vi khi đóng cửa sổ.
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -149,8 +149,8 @@ public class FormTaoMaDeThi extends javax.swing.JFrame {
                     .addComponent(txt_namthi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_ngaythi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(bt_taoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(bt_taoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

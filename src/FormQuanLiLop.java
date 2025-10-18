@@ -26,7 +26,7 @@ public class FormQuanLiLop extends javax.swing.JFrame {
         
         // Thực hiện một kết nối thử đến CSDL (có thể không cần thiết ở đây).
         ctn.c(); 
-        
+        setLocationRelativeTo(null);
         // Gọi phương thức để tùy chỉnh độ rộng cột của bảng.
         setcolWidth(tb); 
         
@@ -67,11 +67,11 @@ public class FormQuanLiLop extends javax.swing.JFrame {
         try(Connection c = ctn.c()){ // Mở kết nối CSDL.
             // Chuẩn bị câu lệnh SQL để lấy Tên Lớp, Tên Ngành và đếm số lượng sinh viên trong mỗi lớp.
             // Lưu ý: Cú pháp "FROM table1, table2 WHERE..." là cú pháp JOIN cũ, nên dùng JOIN..ON.. để rõ ràng hơn.
-            PreparedStatement Pst = c.prepareStatement("SELECT lop.TenLop, nganh.TenNganh, COUNT(ttnguoithi.MaTaiKhoan) AS SoLuongSinhVien " +
+            PreparedStatement Pst = c.prepareStatement("SELECT nganh.TenNganh, COUNT(ttnguoithi.MaTaiKhoan) AS SoLuongSinhVien " +
                                                        "FROM lop, nganh, ttnguoithi " +
                                                        "WHERE ttnguoithi.MaLop = lop.MaLop " +
                                                        "AND ttnguoithi.MaNganh = nganh.MaNganh " +
-                                                       "GROUP BY lop.TenLop, nganh.TenNganh;");
+                                                       "GROUP BY  nganh.TenNganh");
             
             // Lấy mô hình dữ liệu của bảng để có thể thêm/xóa dòng.
             DefaultTableModel tm = (DefaultTableModel)tb.getModel();
@@ -84,7 +84,7 @@ public class FormQuanLiLop extends javax.swing.JFrame {
                 // Tạo một mảng đối tượng để chứa dữ liệu cho một dòng.
                 Object o[] = {
                     rs.getString("TenNganh"), 
-                    rs.getString("TenLop"), 
+                    "", 
                     rs.getString("SoLuongSinhVien") // COUNT() trả về số, dùng getInt() sẽ tốt hơn.
                 };
                 // Thêm dòng mới vào bảng.
@@ -150,6 +150,7 @@ public class FormQuanLiLop extends javax.swing.JFrame {
         cb_nganh = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        bt_XemChiTiet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +211,13 @@ public class FormQuanLiLop extends javax.swing.JFrame {
 
         jLabel4.setText("Tên Lớp");
 
+        bt_XemChiTiet.setText("Xem Chi Tiết");
+        bt_XemChiTiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_XemChiTietActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,14 +225,9 @@ public class FormQuanLiLop extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bt_ThemLop, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(bt_Xoalop, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,8 +237,15 @@ public class FormQuanLiLop extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cb_lop, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)))
-                            .addComponent(txt_Lop, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 434, Short.MAX_VALUE)))
+                            .addComponent(txt_Lop, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bt_ThemLop, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(bt_Xoalop, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(bt_XemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -259,10 +269,11 @@ public class FormQuanLiLop extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cb_lop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bt_ThemLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_Xoalop, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_ThemLop, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_Xoalop, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_XemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -399,6 +410,35 @@ public class FormQuanLiLop extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_lopActionPerformed
 
+    private void bt_XemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_XemChiTietActionPerformed
+       try {
+        // Lấy chỉ số dòng đang được chọn
+        int selectedRow = tb.getSelectedRow();
+        String tenLop = "";
+
+        // Trường hợp 1: Nếu người dùng có chọn dòng trong bảng
+        if (selectedRow != -1) {
+            tenLop = tb.getValueAt(selectedRow, 1).toString();
+        } 
+        // Trường hợp 2: Nếu người dùng chưa chọn dòng nào
+        else {
+            // Kiểm tra xem bảng có dữ liệu không
+            if (tb.getRowCount() > 0) {
+                // Lấy dòng đầu tiên trong bảng
+                tenLop = tb.getValueAt(0, 1).toString();
+            } else {
+                return; // Dừng lại, không mở form
+            }
+        }
+
+        // Gọi form chi tiết và truyền tham số vào
+        new DGD(new FormQuanLiUser(tenLop));
+        this.dispose(); // Đóng form hiện tại
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Lỗi khi mở chi tiết: " + e.getMessage());
+    }
+    }//GEN-LAST:event_bt_XemChiTietActionPerformed
+
     
     //======================================================================================================================================================================
     public static void main(String args[]) {
@@ -408,6 +448,7 @@ public class FormQuanLiLop extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_ThemLop;
+    private javax.swing.JButton bt_XemChiTiet;
     private javax.swing.JButton bt_Xoalop;
     private javax.swing.JComboBox<String> cb_lop;
     private javax.swing.JComboBox<String> cb_nganh;

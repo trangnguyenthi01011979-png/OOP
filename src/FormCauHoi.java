@@ -35,6 +35,7 @@ public class FormCauHoi extends javax.swing.JFrame {
     public FormCauHoi(int made, String MTK) {
         this.Made = made;
         this.MTK = MTK;
+        setLocationRelativeTo(null);
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
         nhom(); // Nhóm các RadioButton lại với nhau.
@@ -212,21 +213,21 @@ public class FormCauHoi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCauHoi)
                             .addComponent(B)
                             .addComponent(A)
                             .addComponent(C)
                             .addComponent(D)
                             .addComponent(lbl_noidungdt)
-                            .addComponent(lbl_time)))
+                            .addComponent(lbl_time)
+                            .addComponent(lblCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(bt_ChTruoc, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(bt_Nopbai, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(bt_ChTieptheo)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addGap(77, 77, 77)
+                        .addComponent(bt_ChTruoc, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(bt_ChTieptheo)
+                        .addGap(51, 51, 51)
+                        .addComponent(bt_Nopbai, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,8 +236,8 @@ public class FormCauHoi extends javax.swing.JFrame {
                 .addComponent(lbl_noidungdt)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_time)
-                .addGap(30, 30, 30)
-                .addComponent(lblCauHoi)
+                .addGap(15, 15, 15)
+                .addComponent(lblCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(A)
                 .addGap(18, 18, 18)
@@ -343,8 +344,8 @@ public class FormCauHoi extends javax.swing.JFrame {
         S = thoiGianDaLam % 60; // Giây
         H = 0; // Giờ (có thể tính thêm nếu cần)
 
-        xuatKetQuaChiTiet(); // Xử lý, chấm điểm và lưu kết quả.
-        
+        xuatKetQuaChiTiet1(); // Xử lý, chấm điểm và lưu kết quả.
+        xuatKetQuaChiTiet();
         // Vô hiệu hóa các nút sau khi nộp bài.
         bt_Nopbai.setEnabled(false);
         bt_ChTruoc.setEnabled(false);
@@ -356,65 +357,123 @@ public class FormCauHoi extends javax.swing.JFrame {
     
     
     //======================================================================================================================================================================
-    public void xuatKetQuaChiTiet() {
-        StringBuilder kq = new StringBuilder(); // Dùng StringBuilder để nối chuỗi hiệu quả.
+    public void xuatKetQuaChiTiet1() {
         int dung = 0, sai = 0;
 
-        // Lặp qua từng câu hỏi để chấm điểm.
+        // Lặp qua từng câu hỏi để tính số câu đúng/sai
         for (CauHoi ch : CHD) {
             int maCau = ch.getMc();
             String dapAnDung = ch.getDapAnDung();
             String dapAnNguoiChon = luubai.get(maCau);
 
-            // Xây dựng chuỗi chi tiết cho từng câu.
-            kq.append("Câu ").append(maCau).append(": ").append(ch.getNoiDung()).append("\n");
-
-            if (dapAnNguoiChon == null) { // Trường hợp không trả lời.
-                kq.append("   Bạn chưa chọn đáp án nào.\n")
-                  .append("   Đáp án đúng: ").append(dapAnDung).append("\n\n");
-                sai++; // Không trả lời cũng tính là sai.
+            if (dapAnNguoiChon == null) {
+                sai++;
                 continue;
             }
 
             if (ch.getLoaida() == 1) {
-    // Một đáp án
-            if (dapAnNguoiChon != null && dapAnNguoiChon.equalsIgnoreCase(dapAnDung)) {
+                // Câu hỏi 1 đáp án
+                if (dapAnNguoiChon.equalsIgnoreCase(dapAnDung)) {
                     dung++;
-                    kq.append("   Kết quả: Đúng\n");
                 } else {
                     sai++;
-                    kq.append("   Kết quả: Sai\n");
                 }
             } else {
-                // Nhiều đáp án: đúng nếu người chọn trùng khớp hoàn toàn (ví dụ "AC" == "AC")
-                if (dapAnNguoiChon != null &&
-                    dapAnNguoiChon.length() == dapAnDung.length() &&
+                // Câu hỏi nhiều đáp án
+                if (dapAnNguoiChon.length() == dapAnDung.length() &&
                     dapAnDung.chars().allMatch(ca -> dapAnNguoiChon.toUpperCase().indexOf(ca) != -1)) {
                     dung++;
-                    kq.append("   Kết quả: Đúng\n");
                 } else {
                     sai++;
-                    kq.append("   Kết quả: Sai\n");
                 }
             }
-
-            kq.append("   Bạn chọn: ").append(dapAnNguoiChon).append("\n")
-              .append("   Đáp án đúng: ").append(dapAnDung).append("\n\n");
         }
 
-        // Thêm phần tổng kết vào cuối chuỗi.
-        kq.append("-----------------------------------\n")
-          .append("TỔNG KẾT:\n")
-          .append("   Số câu đúng: ").append(dung).append("\n")
-          .append("   Số câu sai: ").append(CHD.size() - dung).append("\n")
-          .append("   Tổng số câu: ").append(CHD.size()).append("\n");
+        // Tính điểm (theo thang 10)
+        double diem = 0;
+        if (CHD.size() > 0) {
+            diem = ((double) dung / CHD.size()) * 10;
+        }
 
-        // Gọi phương thức để lưu kết quả vào bảng lichsuthi.
-        luuKetQuaVaoLichSuThi(dung, CHD.size() - dung, kq.toString());
+        // Chuỗi tổng kết ngắn gọn
+        StringBuilder kq = new StringBuilder();
+        kq.append("KẾT QUẢ BÀI LÀM\n")
+          .append("---------------------------\n")
+          .append("Tổng số câu: ").append(CHD.size()).append("\n")
+          .append("Số câu đúng: ").append(dung).append("\n")
+          .append("Số câu sai: ").append(sai).append("\n")
+          .append("Số điểm: ").append(String.format("%.2f", diem)).append("\n"); // làm tròn 2 chữ số
 
-        // Hiển thị kết quả chi tiết cho người dùng.
-        JOptionPane.showMessageDialog(this, kq.toString(), "Kết quả chi tiết", JOptionPane.INFORMATION_MESSAGE);
+        // Hiển thị thông báo
+        JOptionPane.showMessageDialog(this, kq.toString(), "Kết quả bài làm", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void xuatKetQuaChiTiet() {
+        StringBuilder kq = new StringBuilder(); 
+        int dung = 0, sai = 0;
+
+        kq.append("===== KẾT QUẢ CHI TIẾT BÀI LÀM =====\n\n");
+
+        for (CauHoi ch : CHD) {
+            int maCau = ch.getMc();
+            String dapAnDung = ch.getDapAnDung();
+            String dapAnNguoiChon = luubai.get(maCau);
+
+            // In tiêu đề câu hỏi
+            kq.append("Câu ").append(maCau).append(": ").append(ch.getNoiDung()).append("\n");
+
+            // Hiển thị toàn bộ 4 đáp án
+            kq.append("   A. ").append(ch.getDapAnA()).append("\n");
+            kq.append("   B. ").append(ch.getDapAnB()).append("\n");
+            kq.append("   C. ").append(ch.getDapAnC()).append("\n");
+            kq.append("   D. ").append(ch.getDapAnD()).append("\n");
+
+            // Kiểm tra người dùng đã chọn chưa
+            if (dapAnNguoiChon == null || dapAnNguoiChon.isEmpty()) {
+                kq.append("   Bạn chưa chọn đáp án nào.\n");
+                kq.append("   Đáp án đúng: ").append(dapAnDung).append("\n");
+                kq.append("   Kết quả: Sai\n\n");
+                sai++;
+                continue;
+            }
+
+            // So sánh kết quả
+            boolean laDung;
+            if (ch.getLoaida() == 1) {
+                laDung = dapAnNguoiChon.equalsIgnoreCase(dapAnDung);
+            } else {
+                laDung = dapAnNguoiChon.length() == dapAnDung.length() &&
+                         dapAnDung.chars().allMatch(ca -> dapAnNguoiChon.toUpperCase().indexOf(ca) != -1);
+            }
+
+            if (laDung) {
+                dung++;
+                kq.append("   Kết quả: Đúng\n");
+            } else {
+                sai++;
+                kq.append("   Kết quả: Sai\n");
+            }
+
+            // Thông tin đáp án đã chọn và đúng
+            kq.append("   Bạn chọn: ").append(dapAnNguoiChon).append("\n");
+            kq.append("   Đáp án đúng: ").append(dapAnDung).append("\n\n");
+        }
+
+        // Thêm phần tổng kết
+        double diem = (CHD.size() > 0) ? ((double) dung / CHD.size()) * 10 : 0;
+
+        kq.append("=====================================\n")
+          .append("TỔNG KẾT:\n")
+          .append("   Tổng số câu: ").append(CHD.size()).append("\n")
+          .append("   Số câu đúng: ").append(dung).append("\n")
+          .append("   Số câu sai: ").append(sai).append("\n")
+          .append("   Số điểm: ").append(String.format("%.2f", diem)).append("\n");
+
+        // Lưu vào lịch sử thi
+        luuKetQuaVaoLichSuThi(dung, sai, kq.toString());
+
+    }
+
     
     
     //======================================================================================================================================================================

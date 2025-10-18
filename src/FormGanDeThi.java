@@ -19,8 +19,9 @@ public class FormGanDeThi extends javax.swing.JFrame {
         this.LMD = MD; // Lưu mã đề thi vào biến toàn cục.
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
+        setLocationRelativeTo(null);
         showNguoiThi(); // Tải và hiển thị danh sách tất cả các thí sinh.
-        
+        showLop();
         // Tùy chỉnh hành vi khi đóng cửa sổ.
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         // Thêm một bộ lắng nghe sự kiện để xử lý việc đóng cửa sổ.
@@ -87,8 +88,23 @@ public class FormGanDeThi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách thí sinh.", "Lỗi SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 
-
+    //======================================================================================================================================================================
+    private void showLop(){
+        try(Connection c = ctn.c()){
+            PreparedStatement Pst = c.prepareStatement("select * from lop");
+            ResultSet rs = Pst.executeQuery();
+            while(rs.next()){
+                cb_Lop.addItem(rs.getString("TenLop"));
+            }
+        
+        }catch(Exception e){
+            
+        }
+    }
+    
+    
     //======================================================================================================================================================================
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,6 +114,8 @@ public class FormGanDeThi extends javax.swing.JFrame {
         tb = new javax.swing.JTable();
         lbl_Dethi = new javax.swing.JLabel();
         bt_GanDT = new javax.swing.JButton();
+        cb_Lop = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,7 +140,7 @@ public class FormGanDeThi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb);
 
-        lbl_Dethi.setText("GÁN ĐỀ THI");
+        lbl_Dethi.setText("jLabel1");
 
         bt_GanDT.setText("Gán Đề Thi");
         bt_GanDT.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +149,15 @@ public class FormGanDeThi extends javax.swing.JFrame {
             }
         });
 
+        cb_Lop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Lớp " }));
+        cb_Lop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_LopActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Gán Theo Lớp");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,25 +165,32 @@ public class FormGanDeThi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_Dethi)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bt_GanDT)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_Dethi)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cb_Lop, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(bt_GanDT))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_Dethi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bt_GanDT)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_Lop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_GanDT))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,6 +266,46 @@ public class FormGanDeThi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_GanDTActionPerformed
 
+    private void cb_LopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_LopActionPerformed
+
+        lbl_Dethi.setText("Gán Mã Đề Thi Số: " + LMD);
+ 
+        try (Connection c = ctn.c()){
+            PreparedStatement pst = c.prepareStatement("SELECT dn.MaTaiKhoan, dn.TenDangNhap, tt.HoTen, l.TenLop, n.TenNganh, t.MD AS MaDeThi " + 
+                "FROM ttnguoithi tt " +
+                "JOIN dang_nhap dn ON tt.MaTaiKhoan = dn.MaTaiKhoan " +
+                "JOIN lop l ON tt.MaLop = l.MaLop " +
+                "JOIN nganh n ON tt.MaNganh = n.MaNganh " +
+                "JOIN thi t ON dn.MaTaiKhoan = t.MaTaiKhoan " +
+                "WHERE dn.phanloai = ? AND TenLop = ?"); 
+                pst.setString(1,"NT");
+                pst.setString(2,cb_Lop.getSelectedItem().toString());
+                ResultSet rs = pst.executeQuery();
+
+            DefaultTableModel tm = (DefaultTableModel) tb.getModel();
+            tm.setRowCount(0); // Xóa dữ liệu cũ trên bảng.
+
+            while (rs.next()) {
+                Object maDe = rs.getObject("MaDeThi"); // Dùng getObject để xử lý NULL dễ dàng.
+                // Tạo chuỗi trạng thái dựa trên việc mã đề có NULL hay không.
+                String trangThai = (maDe == null) ? "Chưa có đề" : "Đã có đề (" + maDe + ")";
+                
+                // Thêm một dòng mới vào bảng với thông tin đã xử lý.
+                tm.addRow(new Object[]{
+                    trangThai,
+                    rs.getString("MaTaiKhoan"),
+                    rs.getString("TenDangNhap"),
+                    rs.getString("HoTen"),
+                    rs.getString("TenLop"),
+                    rs.getString("TenNganh")
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách thí sinh.", "Lỗi SQL", JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_cb_LopActionPerformed
+
     
     //======================================================================================================================================================================
     public static void main(String args[]) {
@@ -240,6 +314,8 @@ public class FormGanDeThi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_GanDT;
+    private javax.swing.JComboBox<String> cb_Lop;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_Dethi;
     private javax.swing.JTable tb;

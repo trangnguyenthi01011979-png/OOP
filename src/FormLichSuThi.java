@@ -25,6 +25,7 @@ public class FormLichSuThi extends javax.swing.JFrame {
         this.MTK = MTK;
         this.made = mde;
         initComponents(); // Khởi tạo các thành phần giao diện.
+        setLocationRelativeTo(null);
         ctn.c(); // Mở kết nối CSDL.
         setcolWidth(tb); // Tùy chỉnh độ rộng cột của bảng.
         viewtable(); // Tải và hiển thị dữ liệu lịch sử thi.
@@ -150,8 +151,8 @@ public class FormLichSuThi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

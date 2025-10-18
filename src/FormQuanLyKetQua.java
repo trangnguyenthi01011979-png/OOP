@@ -21,6 +21,7 @@ public class FormQuanLyKetQua extends javax.swing.JFrame {
     public FormQuanLyKetQua() {
         initComponents(); // Khởi tạo các thành phần giao diện (nút, bảng, label,...).
         ctn.c(); // Thực hiện kết nối thử đến CSDL.
+        setLocationRelativeTo(null);
         setcolWidth(tb); // Tùy chỉnh độ rộng cột của bảng.
         cbNganh();
         cbLop();

@@ -32,25 +32,25 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCauHoi" min="-2" max="-2" attributes="0"/>
                           <Component id="B" min="-2" max="-2" attributes="0"/>
                           <Component id="A" min="-2" max="-2" attributes="0"/>
                           <Component id="C" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="D" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_noidungdt" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_time" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCauHoi" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                      <Component id="bt_ChTruoc" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="bt_Nopbai" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="bt_ChTruoc" min="-2" pref="144" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="bt_ChTieptheo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="bt_Nopbai" min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,8 +61,8 @@
               <Component id="lbl_noidungdt" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lbl_time" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="lblCauHoi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="lblCauHoi" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="A" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>

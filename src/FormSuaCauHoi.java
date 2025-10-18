@@ -14,6 +14,7 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
     public FormSuaCauHoi(String mc) {
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
+        setLocationRelativeTo(null);
         this.MC = mc; // Lưu mã câu hỏi vào biến toàn cục.
         capnhat(); // Gọi phương thức để tải dữ liệu của câu hỏi này lên form.
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -46,8 +47,10 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
                 B.setText(rs.getString("B"));
                 C.setText(rs.getString("C"));
                 D.setText(rs.getString("D"));
-                // GHI CHÚ: Cần thêm code ở đây để chọn đúng đáp án trong ComboBox `cb_dapAn`.
-                // Ví dụ: cb_dapAn.setSelectedItem(rs.getString("DapAn"));
+                txt_DA.setText(rs.getString("DapAn"));
+                    // GHI CHÚ: Cần thêm code ở đây để chọn đúng đáp án trong ComboBox `cb_dapAn`.
+                    // Ví dụ: cb_dapAn.setSelectedItem(rs.getString("DapAn"));
+                
             }
             
             // ========================= LỖI QUAN TRỌNG =========================
@@ -69,7 +72,6 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cb_dapAn = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         C = new javax.swing.JTextField();
         lbl_MaDe = new javax.swing.JLabel();
@@ -84,10 +86,9 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         B = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        txt_DA = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cb_dapAn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
 
         jLabel5.setText("Đán Án C");
 
@@ -120,26 +121,35 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Noidung)
-                    .addComponent(A)
-                    .addComponent(B)
-                    .addComponent(C)
-                    .addComponent(D)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Noidung)
+                            .addComponent(A)
+                            .addComponent(B)
+                            .addComponent(C)
+                            .addComponent(D)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_MaCau)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(lbl_MaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_MaCau)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(cb_dapAn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_SuaCauhoi)
-                            .addComponent(lbl_MaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 240, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(126, 126, 126)
+                                .addComponent(bt_SuaCauhoi))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txt_DA, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 126, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,10 +182,10 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cb_dapAn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_DA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bt_SuaCauhoi, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(bt_SuaCauhoi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,7 +213,7 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
             Pst1.setString(3, B.getText());
             Pst1.setString(4, C.getText());
             Pst1.setString(5, D.getText());
-            Pst1.setString(6, cb_dapAn.getSelectedItem().toString());
+            Pst1.setString(6, txt_DA.getText());
             Pst1.setInt(7, Integer.parseInt(MC)); // Sử dụng MC làm điều kiện WHERE.
             
             // Thực thi lệnh UPDATE.
@@ -237,7 +247,6 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
     private javax.swing.JTextField C;
     private javax.swing.JTextField D;
     private javax.swing.JButton bt_SuaCauhoi;
-    private javax.swing.JComboBox<String> cb_dapAn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -246,6 +255,7 @@ public class FormSuaCauHoi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lbl_MaCau;
     private javax.swing.JLabel lbl_MaDe;
+    private javax.swing.JTextField txt_DA;
     private javax.swing.JTextField txt_Noidung;
     // End of variables declaration//GEN-END:variables
 }

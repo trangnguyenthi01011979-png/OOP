@@ -23,6 +23,7 @@ public class FormQuanLiTaiKhoan extends javax.swing.JFrame {
      public FormQuanLiTaiKhoan() {
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
+        setLocationRelativeTo(null);
         viewtable(); // Tải và hiển thị danh sách tài khoản.
         
         // Tùy chỉnh hành vi khi đóng cửa sổ.

@@ -18,7 +18,7 @@ public class FormGiaoDienChinhUser extends javax.swing.JFrame {
         this.made = mde;
         initComponents(); // Khởi tạo các thành phần giao diện.
         ctn.c(); // Mở kết nối CSDL.
-        
+        setLocationRelativeTo(null);
         // Kiểm tra xem người dùng đã làm bài thi này trước đó chưa.
         if (!kiemtraBaiLam()) {
             // Nếu đã làm rồi (hàm trả về false), vô hiệu hóa nút "THI NGAY".
@@ -111,7 +111,7 @@ public class FormGiaoDienChinhUser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bt_thi.setText("THI NGAY");
+        bt_thi.setText("BẮT ĐẦU THI");
         bt_thi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_thiActionPerformed(evt);
@@ -157,11 +157,11 @@ public class FormGiaoDienChinhUser extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 203, Short.MAX_VALUE)
+                .addGap(0, 209, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_thi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(209, 209, 209))
+                .addGap(203, 203, 203))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -175,7 +175,7 @@ public class FormGiaoDienChinhUser extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_dethi, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +194,9 @@ public class FormGiaoDienChinhUser extends javax.swing.JFrame {
                 .addComponent(lbl_dethi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_time)
-                .addGap(66, 66, 66)
+                .addGap(29, 29, 29)
                 .addComponent(bt_thi, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();

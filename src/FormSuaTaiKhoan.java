@@ -19,6 +19,7 @@ public class FormSuaTaiKhoan extends javax.swing.JFrame {
         initComponents(); // Khởi tạo các thành phần giao diện.
         this.id = id; // Lưu mã tài khoản vào biến toàn cục.
         ctn.c(); // Mở kết nối CSDL.
+        setLocationRelativeTo(null);
         thongtincapnhat(); // Gọi phương thức để tải dữ liệu của tài khoản này lên form.
         
         // Tùy chỉnh hành vi khi đóng cửa sổ.
@@ -126,9 +127,9 @@ public class FormSuaTaiKhoan extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(bt_CapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
+                        .addComponent(bt_CapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +150,9 @@ public class FormSuaTaiKhoan extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cb_vaitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(bt_CapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(31, 31, 31)
+                .addComponent(bt_CapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();

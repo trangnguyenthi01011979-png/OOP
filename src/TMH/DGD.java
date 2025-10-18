@@ -12,6 +12,7 @@ public class DGD extends javax.swing.JFrame {
         initComponents();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
+        jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
     

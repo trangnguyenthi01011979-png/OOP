@@ -52,13 +52,13 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="bt_TaoCHDT" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
-                  <Component id="bt_TaoDT" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
-                  <Component id="bt_TaoDT1" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bt_TaoDT1" pref="39" max="32767" attributes="0"/>
+                  <Component id="bt_TaoDT" pref="39" max="32767" attributes="0"/>
+                  <Component id="bt_TaoCHDT" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
